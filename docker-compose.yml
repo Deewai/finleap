@@ -1,0 +1,33 @@
+version: '3'
+services:
+  db:
+    restart: always
+    build:
+      context: ./MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+    # command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    container_name: weather-monster_db
+    ports:
+      - "3306:3306"
+  weather-monster:
+    restart: always
+    build:
+      context: ./
+    volumes:
+      - ./.:/go/src/finleap
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+    container_name: weather-monster
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
