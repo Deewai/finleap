@@ -10,7 +10,6 @@ import (
 	"net/http"
 	"sync"
 
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 )
 
