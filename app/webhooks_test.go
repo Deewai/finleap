@@ -179,7 +179,7 @@ func TestHandleCreateWebhookInvalidFormData(t *testing.T) {
 	req, _ := http.NewRequest("POST", "/webhooks", bytes.NewBuffer([]byte(`{"name":"test user"`)))
 	rr := httptest.NewRecorder()
 	a.Router.ServeHTTP(rr, req)
-	assert.Equal(t, http.StatusOK, rr.Code)
+	assert.Equal(t, http.StatusBadRequest, rr.Code)
 }
 
 func TestHandleCreateWebhookValidFormData(t *testing.T) {
