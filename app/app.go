@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"errors"
-	"finleap/model"
+	"github.com/Deewai/finleap/model"
 	"log"
 	"net/http"
 	"sync"

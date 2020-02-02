@@ -77,7 +77,6 @@ func TestHandleCreateCitiesExistingName(t *testing.T) {
 	assert.EqualValues(t, "Duplicate key for column name", m["error"])
 }
 
-
 func TestHandleUpdateCitiesInvalidFormData(t *testing.T) {
 	a := App{}
 	a.Router = mux.NewRouter()

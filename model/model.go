@@ -2,7 +2,6 @@ package model
 
 import (
 	"database/sql"
-	// "errors"
 	"fmt"
 )
 
@@ -22,10 +21,10 @@ type City struct {
 }
 
 type Temperature struct {
-	ID        int     `json:"id"`
-	CityID    int     `json:"city_id"`
-	Max       int     `json:"max"`
-	Min       int     `json:"min"`
+	ID        int   `json:"id"`
+	CityID    int   `json:"city_id"`
+	Max       int   `json:"max"`
+	Min       int   `json:"min"`
 	Timestamp int64 `json:"timestamp"`
 }
 
@@ -41,7 +40,6 @@ type Webhook struct {
 	CityID      int    `json:"city_id"`
 	CallbackURL string `json:"callback_url"`
 }
-
 
 func NewConn(protocol, host, port, user, password, dbname string) (*sql.DB, error) {
 	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4,utf8&parseTime=True&loc=Local", user, password, host, port, dbname)
@@ -69,7 +67,7 @@ func (c *City) Create(db *sql.DB) error {
 
 func (c *City) get(db *sql.DB) error {
 	sql := fmt.Sprintf("SELECT name, latitude, longitude FROM cities WHERE id=%d", c.ID)
-    return db.QueryRow(sql).Scan(&c.Name, &c.Latitude, &c.Longitude)
+	return db.QueryRow(sql).Scan(&c.Name, &c.Latitude, &c.Longitude)
 }
 
 func (c *City) Update(db *sql.DB) error {
@@ -80,7 +78,7 @@ func (c *City) Update(db *sql.DB) error {
 
 func (c *City) Delete(db *sql.DB) error {
 	err := c.get(db)
-	if err != nil{
+	if err != nil {
 		return err
 	}
 	sql := fmt.Sprintf("DELETE FROM cities WHERE id=%d", c.ID)
@@ -154,13 +152,12 @@ func GetWebhooks(db *sql.DB) ([]Webhook, error) {
 
 func (w *Webhook) get(db *sql.DB) error {
 	sql := fmt.Sprintf("SELECT id, city_id, callback_url FROM webhooks WHERE id=%d", w.ID)
-    return db.QueryRow(sql).Scan(&w.ID, &w.CityID, &w.CallbackURL)
+	return db.QueryRow(sql).Scan(&w.ID, &w.CityID, &w.CallbackURL)
 }
-
 
 func (w *Webhook) Delete(db *sql.DB) error {
 	err := w.get(db)
-	if err != nil{
+	if err != nil {
 		return err
 	}
 	sql := fmt.Sprintf("DELETE FROM webhooks WHERE id=%d", w.ID)

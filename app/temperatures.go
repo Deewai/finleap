@@ -3,8 +3,8 @@ package app
 import (
 	"encoding/json"
 	"errors"
-	"finleap/model"
 	"fmt"
+	"github.com/Deewai/finleap/model"
 	"net/http"
 	"strconv"
 	"time"
@@ -14,7 +14,7 @@ import (
 
 func (a *App) sendTemperature(temp model.Temperature) error {
 	invalidError := errors.New("Missing fields in temperature object")
-	if temp.CityID == 0 || temp.Timestamp == 0{
+	if temp.CityID == 0 || temp.Timestamp == 0 {
 		return invalidError
 	}
 	receiverUrls := []string{}
@@ -25,7 +25,7 @@ func (a *App) sendTemperature(temp model.Temperature) error {
 		}
 	}
 	a.Webhooks.lock.Unlock()
-	if len(receiverUrls) == 0{
+	if len(receiverUrls) == 0 {
 		return nil
 	}
 	requestBody, _ := json.Marshal(map[string]interface{}{

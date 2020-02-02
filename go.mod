@@ -1,4 +1,4 @@
-module finleap
+module github.com/Deewai/finleap
 
 go 1.13
 

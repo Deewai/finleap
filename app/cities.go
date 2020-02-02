@@ -2,8 +2,8 @@ package app
 
 import (
 	"encoding/json"
-	"finleap/model"
 	"fmt"
+	"github.com/Deewai/finleap/model"
 	"net/http"
 	"strconv"
 	"strings"

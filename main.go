@@ -1,7 +1,7 @@
 package main
 
 import (
-	"finleap/app"
+	"github.com/Deewai/finleap/app"
 	"os"
 )
 

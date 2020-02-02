@@ -3,8 +3,8 @@ package app
 import (
 	"bytes"
 	"encoding/json"
-	"finleap/model"
 	"fmt"
+	"github.com/Deewai/finleap/model"
 	"log"
 	"net/http"
 	"net/http/httptest"

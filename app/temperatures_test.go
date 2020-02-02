@@ -2,10 +2,10 @@ package app
 
 import (
 	"bytes"
-	"fmt"
 	"encoding/json"
 	"errors"
-	"finleap/model"
+	"fmt"
+	"github.com/Deewai/finleap/model"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -208,7 +208,7 @@ func TestHandleForecastWithValidCityID(t *testing.T) {
 	defer db.Close()
 	a := App{}
 	a.DB = db
-	rows := sqlmock.NewRows([]string{"id", "city_id", "max", "min",}).
+	rows := sqlmock.NewRows([]string{"id", "city_id", "max", "min"}).
 		AddRow(1, 1, 30, 10).
 		AddRow(1, 1, 20, 5)
 	mock.ExpectQuery("^SELECT (.+) FROM temperatures (.+)").WillReturnRows(rows)
@@ -225,4 +225,3 @@ func TestHandleForecastWithValidCityID(t *testing.T) {
 	assert.EqualValues(t, 7.5, m["min"])
 	assert.EqualValues(t, 2, m["sample"])
 }
-
